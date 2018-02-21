@@ -1,5 +1,6 @@
 package com.example.android.quiz;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         CheckBox correctAnswer3 = findViewById(R.id.correctAnswer3);
         CheckBox correctAnswer4 = findViewById(R.id.correctAnswer4);
         EditText editTextQuestion = findViewById(R.id.editTextQuestion);
-        TextView scoreTextView = findViewById(R.id.scoreTextView);
 
         if(correctAnswer1.isChecked()) {
             score++;
@@ -46,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
             score++;
         }
 
-        if(score<4) {
-            scoreTextView.setText("You reached " + score + " out of 4 Points!");
-        }
+
+        /*Creates Toast*/
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        CharSequence allAnswersCorrect = "Great! Everything correct!";
+        CharSequence notAllAnswersCorrect = ""+score+" correct answers";
+
         if(score==4) {
-            scoreTextView.setText("Wow, everything correct!");
+            Toast toast = Toast.makeText(context, allAnswersCorrect, duration);
+            toast.show();
+        } else {
+            Toast toast = Toast.makeText(context, notAllAnswersCorrect, duration);
+            toast.show();
         }
 
         score = 0;
