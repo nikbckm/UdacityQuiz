@@ -22,28 +22,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void checkAnswers(View view){
+    public void checkAnswers(View view) {
 
         RadioButton correctAnswer1 = findViewById(R.id.correctAnswer1);
         RadioButton correctAnswer2 = findViewById(R.id.correctAnswer2);
         CheckBox correctAnswer3 = findViewById(R.id.correctAnswer3);
         CheckBox correctAnswer4 = findViewById(R.id.correctAnswer4);
+        CheckBox wrongAnswer = findViewById(R.id.wrongAnswer);
         EditText editTextQuestion = findViewById(R.id.editTextQuestion);
 
-        if(correctAnswer1.isChecked()) {
+        if (correctAnswer1.isChecked()) {
             score++;
         }
 
-        if(correctAnswer2.isChecked()) {
+        if (correctAnswer2.isChecked()) {
             score++;
         }
 
-        if(correctAnswer3.isChecked() && correctAnswer4.isChecked()) {
+        if (correctAnswer3.isChecked() && correctAnswer4.isChecked() && !wrongAnswer.isChecked()) {
             score++;
         }
 
         String answerFromEditText = editTextQuestion.getText().toString().toLowerCase();
-        if(answerFromEditText.equals("structured query language")){
+        if (answerFromEditText.equals("structured query language")) {
             score++;
         }
 
@@ -52,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         CharSequence allAnswersCorrect = "Great! Everything correct!";
-        CharSequence notAllAnswersCorrect = ""+score+" correct answers";
+        CharSequence notAllAnswersCorrect = "" + score + " correct answers";
 
-        if(score==4) {
+        if (score == 4) {
             Toast toast = Toast.makeText(context, allAnswersCorrect, duration);
             toast.show();
         } else {
